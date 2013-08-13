@@ -1,0 +1,30 @@
+<%= form_for(@cashier) do |f| %>
+  <% if @cashier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cashier.errors.count, "error") %> prohibited this cashier from being saved:</h2>
+
+      <ul>
+      <% @cashier.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :money %>
+    <%= f.text_field :money %> <br/>
+    
+      <%= f.fields_for :users do |u| %>
+	    <%= u.label :name %>
+	    <%= u.text_field :name %> <br/>
+	    
+	    <%= u.label :surname %>
+	    <%= u.text_field :surname %>
+	  <% end %> 
+  
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
